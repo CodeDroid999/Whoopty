@@ -6,8 +6,10 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
+    const orderId = req.query.id?.toString();
+
     const order = await prisma.order.findUnique({
-      where: { id: req.query.id },
+      where: { id: orderId },
     });
 
     const orderItems = await prisma.orderItem.findMany({
